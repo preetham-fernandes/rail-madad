@@ -1,0 +1,60 @@
+Tailwind CSS Letter Spacing Classes
+
+tracking-tighter: Tightens the letter spacing (-0.05em).
+tracking-tight: Slightly tightens the letter spacing (-0.025em).
+tracking-normal: Normal letter spacing (default, 0em).
+tracking-wide: Widens the letter spacing (0.025em).
+tracking-wider: Widens the letter spacing more (0.05em).
+tracking-widest: Widens the letter spacing the most (0.1em).
+
+Tailwind CSS Font Size Classes
+<button className="bg-blue-500 text-white px-4 py-2 rounded flex items-center space-x-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 blinking-button">
+
+text-xs: Extra small text size (0.75rem / 12px)
+text-sm: Small text size (0.875rem / 14px)
+text-base: Base text size (1rem / 16px), which is the default size for most text.
+text-lg: Large text size (1.125rem / 18px)
+text-xl: Extra large text size (1.25rem / 20px)
+text-2xl: 2 times extra large text size (1.5rem / 24px)
+text-3xl: 3 times extra large text size (1.875rem / 30px)
+text-4xl: 4 times extra large text size (2.25rem / 36px)
+text-5xl: 5 times extra large text size (3rem / 48px)
+text-6xl: 6 times extra large text size (3.75rem / 60px)
+text-7xl: 7 times extra large text size (4.5rem / 72px)
+text-8xl: 8 times extra large text size (6rem / 96px)
+text-9xl: 9 times extra large text size (8rem / 128px)
+
+Basic Margin Classes
+m-{size}: Sets margin on all sides.
+mt-{size}: Sets margin on the top side.
+mr-{size}: Sets margin on the right side.
+mb-{size}: Sets margin on the bottom side.
+ml-{size}: Sets margin on the left side.
+Basic Padding Classes
+p-{size}: Sets padding on all sides.
+pt-{size}: Sets padding on the top side.
+pr-{size}: Sets padding on the right side.
+pb-{size}: Sets padding on the bottom side.
+pl-{size}: Sets padding on the left side.
+
+Responsive Design with Tailwind CSS
+Tailwind CSS uses a mobile-first responsive design approach. The utility classes with screen size prefixes (sm:, md:, lg:, xl:) allow you to apply styles at different breakpoints.
+
+Here’s what happens in the example you provided:
+
+p-10: By default, all elements have 2.5rem (40px) padding on all sides for screen sizes below sm (less than 640px).
+
+sm:p-6: For screen sizes of 640px and up, the padding changes to 1.5rem (24px) on all sides.
+
+xl:p-8: For screen sizes of 1280px and up, the padding changes again to 2rem (32px) on all sides.
+
+Summary of Behavior
+Mobile (default, below 640px): p-10 (40px padding)
+Small screens (sm, 640px and above): p-6 (24px padding)
+Extra large screens (xl, 1280px and above): p-8 (32px padding)
+
+<input onChange={(e) =>{setMessage(e.target.value)}}  type="text className=*p-[10px] pl-[15px] bg-transparent flex-1 outline-none" />
+         {
+            message == "" ? "": i className = "flex items-center bg-green-500 text-white my-3 p-3 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+            <PaperAirplaneIcon className="h-6 w-7" />
+         }  
