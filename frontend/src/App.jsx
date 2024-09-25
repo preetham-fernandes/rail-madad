@@ -32,15 +32,16 @@ const App = () => {
               backgroundImage: `url(${bgImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              height: '100vh',
             }}
           >
-            <div className="w-1/12 h-full">
+            <div className="w-1/10 h-screen sticky top-0">
               <InfoBar />
             </div>
-            <div className="w-3/12 h-full">
+            <div className="w-[29%] h-screen sticky top-0">
               <LeftColumn />
             </div>
-            <div className="flex-1 h-full overflow-y-auto">
+            <div className="flex-1 h-screen overflow-y-auto">
               <RightColumn />
             </div>
           </div>
