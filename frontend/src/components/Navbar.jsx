@@ -26,22 +26,22 @@ export default function Navbar({ onLogin }) {
           </p>
         </div>
         <div className="emergency-call flex items-center mr-6">
-          <button className="bg-[#8B0D32] text-white p-1 mr-2 rounded flex items-center space-x-1 hover:bg-[#6D0A26] animate-pulse">
-            <PhoneIcon className="h-5 w-5" />
-            <span className="text-xl font-navbar font-bold">139</span>
-          </button>
-          <p className="text-[12px] ml-2 mr-10 tracking-wide font-navbar">
-            for Security/Medical Assistance
-          </p>
-        </div>
+        <button className="bg-railMadadNavbar text-white p-1 mr-2 rounded flex items-center space-x-1 hover:bg-hover blinking-button">
+          <PhoneIcon className="h-5 w-5" />
+          <span className="text-xl font-navbar font-bold">139</span>
+        </button>
+        <p className="text-[12px] ml-2 mr-10 tracking-wide font-navbar">
+          for Security/Medical Assistance
+        </p>
+      </div>
         <div className="buttons flex items-center space-x-2 ml-auto">
           <button 
-            className="bg-[#F0F0F0] text-black px-4 py-1 rounded hover:bg-[#8B0D32] hover:text-white text-sm"
+            className="bg-login text-black px-4 py-1 rounded hover:bg-railMadadNavbar hover:text-white text-sm"
             onClick={() => setShowLogin(true)}
           >
             Login
           </button>
-          <button className="bg-[#E6E6E6] text-black px-4 py-1 rounded hover:bg-[#8B0D32] hover:text-white text-sm">
+          <button className="bg-signup text-black px-4 py-1 rounded hover:bg-railMadadNavbar hover:text-white text-sm">
             Signup
           </button>
           <button className="bg-white text-black px-4 py-1 rounded border border-gray-300 flex items-center text-sm">

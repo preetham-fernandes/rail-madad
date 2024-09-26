@@ -6,13 +6,13 @@
 /* Define the keyframe animation */
 @keyframes blink {
     0% {
-        background-color: #75002b;  /* Starting color (blue-500) */
+        background-color: #75002b;  
     }
     50% {
-        background-color: #f48323;  /* Intermediate color (blue-600) */
+        background-color: #f48323;  
     }
     100% {
-        background-color: #75002b;  /* Ending color (blue-500) */
+        background-color: #75002b;  
     }
 }
 

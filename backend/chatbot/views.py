@@ -52,8 +52,8 @@ def upload_image(request):
             image = Image.open(image_path)  # Open the image as a PIL object
 
             # Generate caption and category by passing the actual image (PIL object)
-            caption_text = generate_text(image, "Generate a detailed Caption for this Image...")
-            category_text = generate_text(image, "Generate Category in this")
+            caption_text = generate_text(image, "Give a Formal Complaint caption that is to be send to the railway department in 20-25 words.")
+            category_text = generate_text(image, "Generate Category in this. Return answer in one word. If dirty, unsanitary, hazardous environment is shown then Cleanliness. If Broken Equipments is visible like Air Conditioner, Fans / Lights, Charging Point, Lift / Escalator then Electrical Equipments.")
 
             # Update the image object in the database with generated caption & category
             uploaded_image.caption = caption_text
@@ -62,7 +62,7 @@ def upload_image(request):
 
             # Prepare the response to send back to the frontend
             response = {
-                "message": f"Image uploaded successfully! Caption: {caption_text}, Category: {category_text}",
+                "message": f"Image uploaded successfully! Category: {category_text}Caption: {caption_text}",
                 "image_url": uploaded_image.image.url  # Returns the URL of the uploaded image
             }
         else:
