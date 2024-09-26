@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Bot, User, Image as ImageIcon, Send } from "lucide-react";
+import { Train, ArrowRight, Bot, User, Image as ImageIcon, Send } from "lucide-react";
 import axios from "axios";
+import { AiOutlineFileText, AiOutlineAudio, AiOutlinePicture } from "react-icons/ai";
 
 export default function LeftColumn() {
   const [messages, setMessages] = useState([
-    { text: "How can I help you?", sender: "bot" },
-  ]);
+    { content: "How can I help you?", sender: "bot" },
+  ]);  
   const [complaintStep, setComplaintStep] = useState("initial");
   const [pnrNumber, setPnrNumber] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -14,9 +15,9 @@ export default function LeftColumn() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [file, setFile] = useState(null);
 
-  const addMessage = (text, sender) => {
-    setMessages((prev) => [...prev, { text, sender }]);
-  };
+  const addMessage = (content, sender, type = "text") => {
+    setMessages((prev) => [...prev, { content, sender, type }]);
+  };  
 
   const handleRaiseComplaint = () => {
     addMessage("Raise Complaint", "user");
@@ -69,16 +70,19 @@ export default function LeftColumn() {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
-      // Create a preview of the uploaded image
-      // const reader = new FileReader();
-      // reader.onload = (e) => {
-      //   setUploadedImage(e.target.result); // Set preview URL
-      // };
+  
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        // Add the image as a new message with type "image"
+        addMessage(e.target.result, "user", "image");
+      };
       reader.readAsDataURL(selectedFile);
+  
+      // Add a message indicating image selection
       addMessage(`Image selected: ${selectedFile.name}`, "user");
     }
   };
-
+  
   const handleFileUpload = async () => {
     if (!file) {
       alert("Please select a file to upload");
@@ -157,46 +161,33 @@ export default function LeftColumn() {
       </div>
 
       {/* Chat messages container */}
-      <div className="h-[470px] overflow-y-auto p-4">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              message.sender === "user" ? "justify-end" : "justify-start"
-            } mb-4`}
-          >
-            {/* Message sender alignment */}
+        <div className="h-[470px] overflow-y-auto p-4">
+          {messages.map((message, index) => (
             <div
-              className={`flex items-start ${
-                message.sender === "user" ? "flex-row-reverse" : "flex-row"
-              }`}
+              key={index}
+              className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"} mb-4`}
             >
-              {/* Bot or User Icon */}
+            <div className={`flex items-start ${message.sender === "user" ? "flex-row-reverse" : "flex-row"}`}>
               {message.sender === "bot" ? (
                 <Bot className="w-6 h-6 mt-1 mr-2 text-[#8c0035]" />
               ) : (
                 <User className="w-6 h-6 mt-1 ml-2 text-green-600" />
               )}
-              {/* Message Bubble */}
               <div
                 className={`rounded-lg p-2 text-lg break-words whitespace-pre-wrap max-w-[80%] ${
                   message.sender === "user" ? "bg-green-100" : "bg-blue-100"
                 }`}
               >
-                {message.text} {/* Message content */}
+                {/* If the message type is image, render an img tag */}
+                {message.type === "image" ? (
+                  <img src={message.content} alt="Uploaded" className="w-auto h-auto" />
+                ) : (
+                  message.content // Display text content for normal messages
+                )}
               </div>
             </div>
           </div>
         ))}
-        {uploadedImageUrl && (
-          <div className="mt-2">
-            <img
-              src={`http://127.0.0.1:8000${uploadedImageUrl}`}
-              alt="Uploaded"
-              className="max-w-full rounded"
-            />
-          </div>
-        )}
       </div>
 
       {/* Footer Section with buttons and inputs */}
@@ -219,20 +210,22 @@ export default function LeftColumn() {
         )}
 
         {complaintStep === "raise" && (
-          <div className="flex space-x-2 mb-4 justify-center">
-            <button
-              onClick={handleOnboard}
-              className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b]"
-            >
-              Onboard
-            </button>
-            <button
-              onClick={handleOffboard}
-              className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b]"
-            >
-              Offboard
-            </button>
-          </div>
+        <div className="flex space-x-2 mb-4 justify-center">
+          <button
+            onClick={handleOnboard}
+            className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b] flex items-center space-x-2"
+          >
+            <Train className="w-5 h-5" /> {/* Icon for Onboard */}
+            <span>Onboard</span>
+          </button>
+          <button
+            onClick={handleOffboard}
+            className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b] flex items-center space-x-2"
+          >
+            <ArrowRight className="w-5 h-5" /> {/* Icon for Offboard */}
+            <span>Offboard</span>
+          </button>
+        </div>
         )}
 
         {complaintStep === "onboard" && (
@@ -293,26 +286,31 @@ export default function LeftColumn() {
         )}
 
         {complaintStep === "complaintType" && (
-          <div className="flex space-x-2 mb-4 justify-center">
-            <button
-              onClick={() => handleNonFunctionalButton("Feedback")}
-              className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b]"
-            >
-              Text
-            </button>
-            <button
-              onClick={() => handleNonFunctionalButton("Feedback")}
-              className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b]"
-            >
-              Audio
-            </button>
-            <button
-              onClick={handleImageUpload}
-              className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b]"
-            >
-              Image{" "}
-            </button>
-          </div>
+        <div className="flex space-x-2 mb-4 justify-center">
+          <button
+            onClick={() => handleNonFunctionalButton("Feedback")}
+            className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b] flex items-center space-x-2"
+          >
+            <AiOutlineFileText className="w-5 h-5" />
+            <span>Text</span>
+          </button>
+        
+          <button
+            onClick={() => handleNonFunctionalButton("Feedback")}
+            className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b] flex items-center space-x-2"
+          >
+            <AiOutlineAudio className="w-5 h-5" />
+            <span>Audio</span>
+          </button>
+        
+          <button
+            onClick={handleImageUpload}
+            className="bg-[#8c0035] text-white text-xl px-4 py-2 rounded hover:bg-[#75002b] flex items-center space-x-2"
+          >
+            <AiOutlinePicture className="w-5 h-5" />
+            <span>Image</span>
+          </button>
+        </div>
         )}
 
         {complaintStep === "imageUpload" && (

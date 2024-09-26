@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { LogOut, LayoutDashboard, Building2, FileText, Info, Settings, HelpCircle, Bell, Menu, ChevronDown, Phone, Ticket, ShieldAlert, TrendingUp, Users, Clock } from 'lucide-react';
+import logo from "./assets/RailMadad.gif";
+import andheri from "./assets/railway_icons/andheri.jpg";
 
 export default function AdminDashboard({ onLogout }) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", active: true },
@@ -16,14 +19,14 @@ export default function AdminDashboard({ onLogout }) {
 
   const overviewItems = [
     { title: "Total Calls", value: "21", icon: Phone, color: "text-blue-500", bgColor: "bg-blue-100" },
-    { title: "Calls Attended", value: "18", icon: Ticket, color: "text-green-500", bgColor: "bg-green-100" },
+    { title: "Calls Attended", value: "18", icon: Phone, color: "text-green-500", bgColor: "bg-green-100" },
     { title: "Calls Missed", value: "3", icon: Phone, color: "text-red-500", bgColor: "bg-red-100" },
     { title: "Security Calls", value: "5", icon: ShieldAlert, color: "text-yellow-500", bgColor: "bg-yellow-100" },
   ];
 
   const complaintItems = [
     { title: "Total Tickets", value: "15", icon: Ticket, color: "text-purple-500", bgColor: "bg-purple-100", progress: 75 },
-    { title: "Active Tickets", value: "7", icon: HelpCircle, color: "text-orange-500", bgColor: "bg-orange-100", progress: 35 },
+    { title: "Active Tickets", value: "7", icon: Ticket, color: "text-orange-500", bgColor: "bg-orange-100", progress: 35 },
     { title: "Resolved Tickets", value: "8", icon: Settings, color: "text-teal-500", bgColor: "bg-teal-100", progress: 40 },
   ];
 
@@ -42,19 +45,35 @@ export default function AdminDashboard({ onLogout }) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleNotification = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       <aside className={`${isMenuOpen ? 'block' : 'hidden'} md:block md:w-64 bg-gradient-to-b from-[#8B0D32] to-[#6D0A26] text-white`}>
-        <div className="flex items-center justify-center h-20 border-b border-[#6D0A26]">
-          <h1 className="text-2xl font-bold">RailMadad</h1>
-        </div>
+      <div className="flex items-center justify-center h-20 border-b border-[#6D0A26]">
+        <img 
+          src={logo} // Replace with your image path
+          alt="RailMadad Logo" 
+          className="h-12 mr-4" // Adjust height and margin as needed
+        />
+        <h1 className="text-2xl font-bold">RailMadad</h1>
+      </div>
+
         <nav className="flex-1 overflow-y-auto py-4">
-          <div className="px-4 mb-6">
-            <div className="w-20 h-20 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold ring-2 ring-white">
-              AD
-            </div>
-            <h2 className="text-xl font-semibold text-center">Andheri -ADH</h2>
-          </div>
+        <div className="px-4 mb-6">
+        <div className="w-20 h-20 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center ring-2 ring-white overflow-hidden">
+          <img
+            src={andheri} // Replace with your image path
+            alt="Andheri Logo"
+            className="w-full h-full object-center object-cover" // Center and cover the image
+          />
+        </div>
+
+        <h2 className="text-xl font-semibold text-center">Andheri - ADH</h2>
+      </div>
+
           <div className="space-y-1 px-3">
             {menuItems.map((item, index) => (
               <button 
@@ -69,7 +88,7 @@ export default function AdminDashboard({ onLogout }) {
             ))}
           </div>
         </nav>
-        <div className="p-4">
+        {/* <div className="p-4">
           <button 
             onClick={onLogout} 
             className="w-full bg-white text-[#8B0D32] py-2 rounded hover:bg-gray-100 flex items-center justify-center"
@@ -77,7 +96,7 @@ export default function AdminDashboard({ onLogout }) {
             <LogOut className="mr-2 h-5 w-5" />
             Logout
           </button>
-        </div>
+        </div> */}
       </aside>
       <main className="flex-1 overflow-y-auto bg-gray-50">
         <header className="bg-white shadow-sm sticky top-0 z-10">
@@ -87,19 +106,54 @@ export default function AdminDashboard({ onLogout }) {
             </button>
             <h1 className="text-xl font-semibold text-gray-800 md:text-2xl">Welcome, Admin</h1>
             <div className="flex items-center space-x-4">
-              <button className="relative" aria-label="Notifications">
+              <button onClick={toggleNotification} className="relative" aria-expanded={isNotificationOpen} aria-label="Notifications">
                 <Bell className="h-6 w-6" />
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
               </button>
+              {isNotificationOpen && (
+                <div className="absolute top-12 right-1 mt-2 w-80 bg-white text-black rounded-lg shadow-lg">
+                  <div className="flex flex-row items-center justify-between py-4 px-6 border-b border-zinc-800">
+                    <h2 className="text-lg font-semibold">Notifications</h2>
+                    <button className="text-xs text-black hover:text-red-900">
+                      Mark all as read
+                    </button>
+                  </div>
+                  <div className="px-6 py-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="relative">
+                        <div className="h-9 w-9 rounded-full bg-white border-b border-black flex items-center justify-center">
+                          <span className="text-sm font-medium">PF</span>
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 rounded-full bg-zinc-900 p-0.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          Preetham Fernandes registered a Feedback.
+                        </p>
+                        <p className="text-xs text-zinc-500">8:10 PM, Sep 22</p>
+                      </div>
+                      <button className="p-1 rounded-full hover:bg-zinc-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="relative">
                 <button 
                   onClick={toggleProfile}
-                  className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold"
+                  className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold pl-1 pb-1"
                   aria-expanded={isProfileOpen}
                   aria-haspopup="true"
                 >
-                  AD
-                  <ChevronDown className="h-4 w-4 ml-1" />
+                  A
+                  <ChevronDown className="h-4 w-4" />
                 </button>
                 {isProfileOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
@@ -119,7 +173,7 @@ export default function AdminDashboard({ onLogout }) {
               {overviewItems.map((item, index) => (
                 <div key={index} className="bg-white p-4 rounded shadow">
                   <div className={`flex items-center justify-between ${item.bgColor} p-2 rounded`}>
-                    <span className="text-sm font-medium">{item.title}</span>
+                    <span style={{ fontSize: '1.2rem', fontWeight: '500' }}>{item.title}</span>
                     <item.icon className={`h-8 w-8 ${item.color}`} />
                   </div>
                   <div className="text-3xl font-bold pt-4">{item.value}</div>
@@ -134,7 +188,7 @@ export default function AdminDashboard({ onLogout }) {
               {complaintItems.map((item, index) => (
                 <div key={index} className="bg-white p-4 rounded shadow">
                   <div className={`flex items-center justify-between ${item.bgColor} p-2 rounded`}>
-                    <span className="text-sm font-medium">{item.title}</span>
+                    <span style={{ fontSize: '1.2rem', fontWeight: '500' }}>{item.title}</span>
                     <item.icon className={`h-8 w-8 ${item.color}`} />
                   </div>
                   <div className="text-3xl font-bold pt-4">{item.value}</div>
@@ -160,7 +214,7 @@ export default function AdminDashboard({ onLogout }) {
             <div className="grid gap-6 md:grid-cols-3">
               <div className="bg-white p-4 rounded shadow">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Average Response Time</span>
+                  <span style={{ fontSize: '1rem', fontWeight: '500' }}>Average Response Time</span>
                   <Clock className="h-6 w-6 text-gray-500" />
                 </div>
                 <div className="text-2xl font-bold">15 min</div>
@@ -168,7 +222,7 @@ export default function AdminDashboard({ onLogout }) {
               </div>
               <div className="bg-white p-4 rounded shadow">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Customer Satisfaction</span>
+                  <span style={{ fontSize: '1rem', fontWeight: '500' }}>Customer Satisfaction</span>
                   <TrendingUp className="h-6 w-6 text-gray-500" />
                 </div>
                 <div className="text-2xl font-bold">92%</div>
@@ -176,7 +230,7 @@ export default function AdminDashboard({ onLogout }) {
               </div>
               <div className="bg-white p-4 rounded shadow">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Active Users</span>
+                  <span style={{ fontSize: '1rem', fontWeight: '500' }}>Active Users</span>
                   <Users className="h-6 w-6 text-gray-500" />
                 </div>
                 <div className="text-2xl font-bold">1,234</div>
