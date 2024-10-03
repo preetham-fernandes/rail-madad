@@ -3,6 +3,25 @@
 @tailwind utilities;
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
 
+@keyframes rollup {
+  0% {
+    height: 100%;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.animate-rollup {
+  animation: rollup 1s forwards;
+  overflow: hidden;
+}
+
+
 /* Define the keyframe animation */
 @keyframes blink {
     0% {

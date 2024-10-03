@@ -1,54 +1,20 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import AdminDashboard from './components/Admin_Dashboard';
-import InfoBar from './components/InfoBar';
-import LeftColumn from './components/LeftColumn';
-import RightColumn from './components/RightColumn';
-import bgImage from './components/assets/body-bg.jpg';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Mainpage from './Mainpage'
+import Dashboard from './components/adminDashboard/Dashboard'
+import Departments from './components/adminDashboard/Departments';
+import Analytics from './components/adminDashboard/Analytics';
+import Totaltickets from './components/adminDashboard/Dashboardfiles/Totaltickets';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = (userId, password) => {
-    if (userId === 'admin' && password === 'password') {
-      setIsLoggedIn(true);
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
   return (
-    <div className="h-screen flex flex-col">
-      {isLoggedIn ? (
-        <AdminDashboard onLogout={handleLogout} />
-      ) : (
-        <>
-          <Navbar onLogin={handleLogin} />
-          <div 
-            className="flex flex-1 overflow-hidden" 
-            style={{
-              backgroundImage: `url(${bgImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              height: '100vh',
-            }}
-          >
-            <div className="w-1/10 h-screen sticky top-0">
-              <InfoBar />
-            </div>
-            <div className="w-[29%] h-screen sticky top-0">
-              <LeftColumn />
-            </div>
-            <div className="flex-1 h-screen overflow-y-auto">
-              <RightColumn />
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+    <Router>
+      <Routes>
+        <Route path="/" element={<Mainpage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  )
+}
 
-export default App;
+export default App

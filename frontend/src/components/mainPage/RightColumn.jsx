@@ -5,24 +5,24 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/autoplay';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
 
-import slide_image_8 from './assets/swiper-images/img_8.jpg';
-import slide_image_9 from './assets/swiper-images/img_9.jpg';
-import slide_image_10 from './assets/swiper-images/img_10.webp';
-import slide_image_11 from './assets/swiper-images/img_11.jpg';
-import slide_image_12 from './assets/swiper-images/img_12.jpg';
-import slide_image_13 from './assets/swiper-images/img_13.jpg';
-import slide_image_14 from './assets/swiper-images/img_14.jpg';
+import slide_image_8 from '../assets/swiper-images/img_8.jpg';
+import slide_image_9 from '../assets/swiper-images/img_9.jpg';
+import slide_image_10 from '../assets/swiper-images/img_10.webp';
+import slide_image_11 from '../assets/swiper-images/img_11.jpg';
+import slide_image_12 from '../assets/swiper-images/img_12.jpg';
+import slide_image_13 from '../assets/swiper-images/img_13.jpg';
+import slide_image_14 from '../assets/swiper-images/img_14.jpg';
 
-import service_icon_1 from './assets/icons/service_1.png'; 
-import service_icon_2 from './assets/icons/service_2.png';
-import service_icon_3 from './assets/icons/service_3.png';
-import service_icon_4 from './assets/icons/service_4.png';
-import service_icon_5 from './assets/icons/service_5.png';
-import service_icon_6 from './assets/icons/service_6.png';
-import service_icon_7 from './assets/icons/service_7.png';
-import service_icon_8 from './assets/icons/service_8.png';
+import service_icon_1 from '../assets/icons/service_1.png'; 
+import service_icon_2 from '../assets/icons/service_2.png';
+import service_icon_3 from '../assets/icons/service_3.png';
+import service_icon_4 from '../assets/icons/service_4.png';
+import service_icon_5 from '../assets/icons/service_5.png';
+import service_icon_6 from '../assets/icons/service_6.png';
+import service_icon_7 from '../assets/icons/service_7.png';
+import service_icon_8 from '../assets/icons/service_8.png';
 
-import icon from './assets/icons/open.png';
+import icon from '../assets/icons/open.png';
 
 const RightColumn = () => {
   return (

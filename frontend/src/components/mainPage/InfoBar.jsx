@@ -1,10 +1,10 @@
 import React from "react";
-import stationIcon from "./assets/infobar/station.png";
-import trainIcon from "./assets/infobar/train.png";
-import appreciationIcon from "./assets/infobar/appreciation.png";
-import enquiryIcon from "./assets/infobar/enquiry.png";
-import trackIcon from "./assets/infobar/track.png";
-import suggestionIcon from "./assets/infobar/suggestion.png";
+import stationIcon from "../assets/infobar/station.png";
+import trainIcon from "../assets/infobar/train.png";
+import appreciationIcon from "../assets/infobar/appreciation.png";
+import enquiryIcon from "../assets/infobar/enquiry.png";
+import trackIcon from "../assets/infobar/track.png";
+import suggestionIcon from "../assets/infobar/suggestion.png";
 
 const InfoBar = () => {
   return (

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { PhoneIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import Login from "./Login";
-import logoG20 from "./assets/navbar/logog20.png";
-import googleMic from "./assets/navbar/google_mic.png";
-import manLogo from "./assets/navbar/image.png";
+import Login from "../mainPage/Login";
+import logoG20 from "../assets/navbar/logog20.png";
+import googleMic from "../assets/navbar/google_mic.png";
+import manLogo from "../assets/navbar/image.png";
 
 export default function Navbar({ onLogin }) {
   const [showLogin, setShowLogin] = useState(false);
