@@ -2,7 +2,7 @@
 
 Here is a video about my project:
 
-[![Watch the video](https://img.youtube.com/vi/bJ4Zcf1lHME?si=4_0l2mF7btCi-Fl7/0.jpg)](https://youtu.be/bJ4Zcf1lHME?si=4_0l2mF7btCi-Fl7)
+[![Watch the video](https://img.youtube.com/vi/4_0l2mF7btCi-Fl7/0.jpg)](https://youtu.be/bJ4Zcf1lHME?si=4_0l2mF7btCi-Fl7)
 
 ### 🙋‍♂️Addressing the problem:
 
